@@ -23,8 +23,12 @@ div{
 鋤頭養分增加: <input type='tel' id='hoeBouns' value=0><br>
 肥料鏟養分 增加<input type='radio' id='ferBounsType' name='a' value=0 checked> 加倍<input type='radio' id='ferBounsType' value=1 name='a'><input type='tel' id='ferBouns' value=0><br>
 
-<input  id='resultFer' readonly>
+所需養分(含綠肥):<input  id='resultFer' readonly>
 </div>
+<h3>
+有任何問題或建議請與我聯絡<br>
+ID :種到歪瓜
+</h3>
 </body>
 <script>
 
@@ -32,15 +36,15 @@ var a=document.getElementsByTagName('input'),calc=function(){ a[2].value=a[0].va
 var calc2=function(){ 
 
 	let result = ( (1-a[4].value/100)*a[3].value - a[5].value-250 )/2.5 ;
-	 if(document.getElementsByName('a')[1].checked===true){console.log('ok');result*=(100-parseInt(a[8].value))/100 }else{result-=parseInt(a[8].value)}
-	a[9].value=result;
+	document.getElementsByName('a')[1].checked?result*=(100-parseInt(a[8].value))/100 : result-=parseInt(a[8].value) ;
+	a[9].value=result
 }
 
 a[0].addEventListener('keyup',calc);
 a[1].addEventListener('keyup',calc);
 a[6].addEventListener('click',calc2);
 a[7].addEventListener('click',calc2);
-for(k=3;k<=8;k++){
+for(k=3;k<9;k++){
 a[k].addEventListener('keyup',calc2);
 }
 
