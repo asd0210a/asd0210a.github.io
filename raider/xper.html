@@ -4,9 +4,11 @@ section div,article section{
 margin-left:1rem
 }
 .border{
+padding:.25rem .5rem;
 border:1px solid #000;
 border-radius:.5rem;
 margin-top:.25rem;
+margin-left:unset;
 width:60%
 }
 </style>
@@ -70,7 +72,7 @@ Index
 		只要點 "右下草帽>第2個圖示>上面標籤 造景" <br>
 		點選剛剛收進的東西圖示 會跳出詳細資訊 右下有藍色垃圾桶<br>
 		<img src='https://truth.bahamut.com.tw/s01/202105/d306e5c29502ae438f339b916a0d99dd.JPG'>
-		<p>
+		<p class='tip'>
 		Tip.1 善用播種等待的時間能讓你減少不必要的浪費時間<br>
 		Tip.2 造景、農田、機器 長按可以移動或移除收進背包<br>
 		Tip.3 背包裡 藍色垃圾桶的功能是賣給系統此物品
@@ -94,10 +96,10 @@ Index
 			也就是<br>
 			「無論遊戲同天什麼時候種植 只要藍色條重新跑 都是算過了一天」 (有點繞口令)<br>
 			這一點我認為非常實用 尤其是接下來的任務
-			<p>
-			Tip.4 使用特定道具能讓作物瞬間變成可收割 甚至無視技術值<br>
-			Tip.5 藍色時間條每重新跑一次 代表過了一天 作物成長一天
-			</p>
+				<p class='tip'>
+				Tip.4 使用特定道具能讓作物瞬間變成可收割 甚至無視技術值<br>
+				Tip.5 藍色時間條每重新跑一次 代表過了一天 作物成長一天
+				</p>
 			</div>
 			<div>
 			<h4  id='ch122'>1-2-2 作物災變</h4>
@@ -164,6 +166,12 @@ Index
 				會在後面部分一一說明
 				</div>
 				</p>
+				<p class='tip'>
+					Tip.6 生長時可以藉由看農田裡作物的資訊了解可能會遇到什麼災害<br>
+					Tip.7 當作物上出現表情時 代表即將遇到災害 快處理吧!<br>
+					Tip.8 作物災害防不住嗎? 來點閃電吧!<br>
+					Tip.9 種植銅瓜、銀瓜、金瓜 能有機率獲得一些閃電 及其他有用的東西
+				</p>
 			</div>
 			<!--
 			<div>
@@ -203,26 +211,57 @@ Index
 			
 			就是使用 <img src='img/needle.jpg' height=48>「生長激素(後面我簡稱打針)」的意思 之後任務會先送你一些<br>
 			<b style='color:red;font-size:1.25rem'>不過在前中期 為了達到上級而補針 強烈建議不要這麼做</b><br>
-			因為後面如果需要「特級」 免不了要打針 所以先暫時留著
+			因為後面如果需要「特級」 免不了要打針 所以先暫時留著<br>
+			還有一種之後會遇到的情況是「變異屬性」這在之後「變異」的章節會說明
 			</li><br>
 			<li>
-			盡量避免作物災害 災變在前期幾乎會使作物等級降至中級以下
+			盡量避免作物災害 災變在前期幾乎會使作物等級降至中級以下<br>
+			然後... <span style='font-size:1.5rem;color:red'>狗不會把菜咬爛!</span>
 			</li>
-			</div>
+			</ol>
+			<p class='tip'>
+				Tip.10 想要種出好品質 技術值很重要 如何照顧作物也是一大關鍵<br>	
+			</p>
 	</section>
 
 	<section id='ch13'>
 	<h3>1-3 養分</h3>
-	
-	<img src='img/formula_fer.jpg' style='width:65%'><br>
-	↑幾乎萬用養分公式<br>
-	看不懂? 如果身為新手 我大概也是看不懂(?<br>
-	所以前期先去掉一些東西 變成<br>
-	<img src='img/formula_fer_sim.jpg' ><br>
-	<table>
-	
-	<tr><td>F　</td><td>=　肥料所提供的養分</td></tr>
-	<tr><td>F_final　</td><td>=　最後所得的<u>總養分</u></td></tr>
+	在Lv.10時 里長會叫你去研究「翻土」<br>
+	施基肥後的農田 翻土後 農田裡的養分就會變多 就是原本農田裡的養分 再x2.5 就是翻土後農田的養分<br>
+	但需要注意農田的「最大容載養分」<br>
+	在「0級農田(一開始的農田)」 還未翻土前 最大容載養分是 400<br>
+	<img src='img/fer-loader.jpg'><br>
+	代表 你撒了「下級基肥(以下簡稱下基)」農田裡養分只有增加到400 <br>
+	翻土後 最大養分變成1500了<br>
+	但由於翻土前有200養分被"沒收"了 所以翻土後增加2.5倍只到1000<br>
+	為了解決這個窘境 Lv.10 可以研究「升級農田」 <br>
+	農田升級後有什麼好康的呢?  
+	<div class='border'>
+		點開農田後 會看到左上的資訊<br>
+		<img src='img/field-info.jpg'><br>
+		可以看到有: 增加收割量、收割經驗增加 還有「彩虹出現機率從0%->10%」(等等會提到這是什麼)的Buff<br>
+		<span style='font-size:1.25rem;color:red'>不過有「體力消耗增加20%」的Debuff <b>這也是遊戲中一門精隨所在!</b></span><br>
+		更多的體力消耗 意味著你的體力值隨著「在該農田的所有動作」(也就是種植、施肥、澆水、收割、翻土、...等等)愈頻繁而消耗愈快<br>
+		作物等級愈高 對作物的動作所消耗的體力也愈多<br>
+		一塊田 是還好 如果都是升級後的田呢? 那消耗量有時候就很可觀了
+		
+	</div>
+	好 回歸正題 再看到農田的最大可裝載養分 變成900了<br>
+	<img src='img/field-loader-lv2.jpg'><br>
+	如此一來 施下基再也不會被"沒收200"了 耕土後最大容載養分也變為2500<br>
+	那應該有計算養分的公式吧?<br>
+	有!請看:
+	<div class='border'>
+		<img src='img/fer-formula.jpg' style='width:65%'><br>
+		↑幾乎萬用養分公式<br>
+		看不懂? 如果身為新手 我大概也是看不懂(?<br>
+		所以前期先去掉一些東西 變成<br>
+		<img src='img/fer-formula_sim.jpg' ><br>
+		<table>
+		
+		<tr><td>F　</td><td>=　肥料所提供的養分</td></tr>
+		<tr><td>F_final　</td><td>=　最後所得的<u>總養分</u></td></tr>
+	</div>
 	</section>
 
 </article>
