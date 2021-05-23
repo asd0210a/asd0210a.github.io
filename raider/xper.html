@@ -1,7 +1,9 @@
 <!doctype html><html><head><meta charset='utf-8'>
 <style>
 section div,article section{
-margin-left:1rem
+margin-left:1rem;
+margin-top:.25rem;
+margin-bottom:.65rem;
 }
 .border{
 padding:.25rem .5rem;
@@ -10,6 +12,13 @@ border-radius:.5rem;
 margin-top:.25rem;
 margin-left:unset;
 width:60%
+}
+.red{
+color:#E30C12;
+font-size:1.5rem;
+}
+.reset{
+font-size:unset;
 }
 </style>
 </head>
@@ -137,7 +146,7 @@ Index
 				&nbsp;
 				「即將」遇到災害的第一天 也就是 臉開始出現的第一天<br>
 				只要及時處理 就不會影響作物生長<br>
-				但不處理的話 隔天就可能使作物的「生長值」倒退嚕(後面會說明是如何影響)<br>
+				但不處理的話 隔天就可能使作物的「生長值」倒退嚕(後面會說明是如何影響) 或者是作物直接變成最低級!<br>
 				進而影響作物等級 如下例子:
 					<div class='border'>
 					在蘿美生菜種植時 如果沒有補養份 你會發現原本系統是顯示「中級」<br>
@@ -206,17 +215,22 @@ Index
 			<ol>
 			<li>
 			你的「技術值」盡可能要大於/等於「該作物所需上級技術值」 如下圖<br>
-			<img src='img/ch123_1.jpg'><br>
+			<img src='img/ch123_1.jpg'><br><br>
+			怎麼提升技術值?<br>
+			婦女會會長有叫你去買頂<s>綠色的</s>帽子戴你戴了沒?<br>
+			商店裡的「服裝」 不單單是為了美觀 點擊服裝圖示會看到該服裝的「加成效果」<br>
+			<img src='clothes-info'><br>
+			有了之後 會長會教你到底要怎麼戴<s>綠</s>帽子<br>
 			沒有達到所需技術值的話 就需要「補針」"讓「最終生長值」能高於上級門檻(先大概了解就好)"<br>
 			
 			就是使用 <img src='img/needle.jpg' height=48>「生長激素(後面我簡稱打針)」的意思 之後任務會先送你一些<br>
-			<b style='color:red;font-size:1.25rem'>不過在前中期 為了達到上級而補針 強烈建議不要這麼做</b><br>
+			<b class='red'>不過在前中期 為了達到上級而補針 強烈建議不要這麼做</b><br>
 			因為後面如果需要「特級」 免不了要打針 所以先暫時留著<br>
 			還有一種之後會遇到的情況是「變異屬性」這在之後「變異」的章節會說明
 			</li><br>
 			<li>
 			盡量避免作物災害 災變在前期幾乎會使作物等級降至中級以下<br>
-			然後... <span style='font-size:1.5rem;color:red'>狗不會把菜咬爛!</span>
+			然後... <span class='red'>狗不會把菜咬爛!</span>
 			</li>
 			</ol>
 			<p class='tip'>
@@ -240,7 +254,7 @@ Index
 		點開農田後 會看到左上的資訊<br>
 		<img src='img/field-info.jpg'><br>
 		可以看到有: 增加收割量、收割經驗增加 還有「彩虹出現機率從0%->10%」(等等會提到這是什麼)的Buff<br>
-		<span style='font-size:1.25rem;color:red'>不過有「體力消耗增加20%」的Debuff <b>這也是遊戲中一門精隨所在!</b></span><br>
+		<span class='red'>不過有「體力消耗增加20%」的Debuff <b>這也是遊戲中一門精隨所在!</b></span><br>
 		更多的體力消耗 意味著你的體力值隨著「在該農田的所有動作」(也就是種植、施肥、澆水、收割、翻土、...等等)愈頻繁而消耗愈快<br>
 		作物等級愈高 對作物的動作所消耗的體力也愈多<br>
 		一塊田 是還好 如果都是升級後的田呢? 那消耗量有時候就很可觀了
@@ -260,8 +274,63 @@ Index
 		<table>
 		
 		<tr><td>F　</td><td>=　肥料所提供的養分</td></tr>
+		<tr><td>100　</td><td>=　農田原有的養分</td></tr>
 		<tr><td>F_final　</td><td>=　最後所得的<u>總養分</u></td></tr>
-	</div>
+		</table>
+		x1 或 x2.5 是依據 有沒有耕土 有就x2.5 沒有就1</div>
+		<p>
+		我們按照這公式來算 在「稍微貧瘠的農田」施下基(+500)再耕土
+		( 100 + 500 ) x 2.5 =1500<br>
+		所以做完後 農田應該會有1500 很剛好可以種「羅勒種子」
+		</p>
+	
 	</section>
-
+	<section id='ch14'>
+	<h3>1-4 熟練度與特級</h3>
+	<img src='img/misson-sp.jpg'><br>
+	相信這個任務一定帶給不少玩家滿滿的回憶吧!<br>
+	同時也是中期之前最難的任務 為什麼說最難? <br>
+	這篇章節會講到 它是如何成為前期最難的!
+	
+	<h4 id='ch141'>作物熟練度</h4>
+	<div>
+		10等升級小屋之後 里長會叫你去屋裡看一本東西 就是「農作手冊」<img src='img/home-handbook.jpg' width=60><br>
+		他在解說的時候 你是不是想說 這只是讓我看種菜的成果而已啊! 沒很重要吧?<br><b style='color:red;font-size:3rem'>錯了!</b><br>
+		玩瘋種菜就是需要這本書! 這本書是「換真菜的關鍵」!<br>
+		點開之後 會看到每種作物的圖示 點其中一個作物後 (我以Lv.64的蒜做舉例)<br>
+		<img src='img/home/hb-novice.jpg'><br>
+		我們先看圖中「2」的部分 
+		<div class='border'>
+			中文是寫「到行家為止 獲得上級次數」然後下面是數量條<br>
+			意思是 該作物的熟練度目前是「初學者(1的藍色那邊寫的)」<br>
+			需要收割該作物上級 360次(2的數量條那裏寫的) 才能達到「行家」
+		</div>
+		到達行家之後 能幹嘛? 這就是1的部分了
+		<div class='border'>
+		藍色標籤 是你目前該作物的熟練度<br> 下面的東西是對於該作物的各種加成效果
+			<ul>
+				<li>彩虹出現率 : 播種該作物後農田出現「彩虹」的增加機率(等等會教到什麼是彩虹)</li>
+				<li>特級成功率 : 「有彩虹的作物」熟成時 <b class='red reset'>如果「生長值全滿」</b>收割變成特級的機率 </li>
+				<li>變異發生率 : 沒有彩虹時變異發生的增加機率(Lv.50之後才會出現的東西 不用理它)</li>
+			</ul>
+		</div>
+		里長會叫你先把青花菜的熟練度種到行家之後再去看一次農作手冊<br>
+		再去看一次就會發現 上圖1的特級成功率數值變到25%了<br>
+		<img src='img/home/hb-intermediate.jpg'><br>
+		這代表 把農田升級成「稍微貧瘠的農田」後 就有少少的機會可以種出特級青花菜了!<br>
+		<div class='border' style='display:inline-block;width:unset'>
+		<h4 align=center style='margin:unset'>補充- 行家以外每個熟練度加成效果:</h4>
+	<table border=1 style='text-align:center'>
+	<tr><td><img src='img/home/hb-pro.jpg'></td></tr>
+	<tr><td>專家</td></tr>
+	<tr><td><img src='img/home/hb-expert.jpg'></td></tr>
+	<tr><td>達人(每個作物固定需100小片「Real兌換券」升至「王」)</td></tr>
+	<tr><td><img src='img/home/hb-master.jpg'></td></tr>
+	<tr><td>王(每個作物固定需9999小片「Real兌換券」升至「神」)</td></tr><tr><td><img src='img/home/hb-legend.jpg'></td></tr><tr><td>神 (待確認其他加成效果)</td></tr>
+	</table>
+	</div>
+</div>
+	<h4 id='ch142'>彩虹與特級</h4>
+	<img src='img/field-rainbow.jpg'>
+	</section>
 </article>
