@@ -1,7 +1,11 @@
 <!doctype html><html><head><meta charset='utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
+*, ::after, ::before {
+    box-sizing: border-box;
+	font-family:微軟正黑體 Light
+}
 section div,article section{
-margin-left:1rem;
 margin-top:.25rem;
 margin-bottom:.65rem;
 }
@@ -11,7 +15,8 @@ border:1px solid #000;
 border-radius:.5rem;
 margin-top:.25rem;
 margin-left:unset;
-width:60%
+width:99%;
+background-color:#FCEBEC;
 }
 .red{
 color:#E30C12;
@@ -19,6 +24,34 @@ font-size:1.5rem;
 }
 .reset{
 font-size:unset;
+}
+
+img{
+display:block;
+max-width:100%;}
+.img-in{
+display:inline;
+}
+.tip{
+color:#1914A2;
+font-weight:bold;
+}
+h3{
+color:#3B8B15;
+}
+@media(min-width:992px){
+	section div,article section{
+	margin-left:1rem;
+	}
+
+	.border{
+	padding:.25rem .5rem;
+	border:1px solid #000;
+	border-radius:.5rem;
+	margin-top:.25rem;
+	margin-left:unset;
+	width:60%
+	}
 }
 </style>
 </head>
@@ -101,9 +134,8 @@ Index
 			「但人物可以隨意走動」 代表你可以在其他農田種植 或施肥、施基肥、澆水......等等<br><br>
 
 			啊...對了 上面那個藍色條一直跑吧 那是遊戲每天經過的時間<br>
-			當它跑完重新跑 都是算過了一天 <br>
-			也就是<br>
-			「無論遊戲同天什麼時候種植 只要藍色條重新跑 都是算過了一天」 (有點繞口令)<br>
+			當它跑完重新跑 都是算過了一天 也就是<br>
+			<b>「無論遊戲同天什麼時候種植 只要藍色條重新跑 都是算過了一天」</b> (有點繞口令)<br>
 			這一點我認為非常實用 尤其是接下來的任務
 				<p class='tip'>
 				Tip.4 使用特定道具能讓作物瞬間變成可收割 甚至無視技術值<br>
@@ -211,6 +243,11 @@ Index
 			<li>下級 (Grade-F)</li>
 			</ol>
 			其中 特上級和特級 我們先不去討論它 等等就會提到了<br>
+			那要怎麼確定最後種出來的是哪個等級?
+			<div>
+			點開種植中的農田 會看到生長條如下:<br>
+			<img src='img/grow-lv3-a.jpg'>
+			</div>
 			要種出「上級」 需要...<br>
 			<ol>
 			<li>
@@ -223,7 +260,7 @@ Index
 			有了之後 會長會教你到底要怎麼戴<s>綠</s>帽子<br>
 			沒有達到所需技術值的話 就需要「補針」"讓「最終生長值」能高於上級門檻(先大概了解就好)"<br>
 			
-			就是使用 <img src='img/needle.jpg' height=48>「生長激素(後面我簡稱打針)」的意思 之後任務會先送你一些<br>
+			就是使用 <img class='img-in' src='img/needle.jpg' height=48>「生長激素(後面我簡稱打針)」的意思 之後任務會先送你一些<br>
 			<b class='red'>不過在前中期 為了達到上級而補針 強烈建議不要這麼做</b><br>
 			因為後面如果需要「特級」 免不了要打針 所以先暫時留著<br>
 			還有一種之後會遇到的情況是「變異屬性」這在之後「變異」的章節會說明
@@ -332,5 +369,12 @@ Index
 </div>
 	<h4 id='ch142'>彩虹與特級</h4>
 	<img src='img/field-rainbow.jpg'>
+	<div>
+		青花菜種到行家後  里長有說過 作物到行家之後才會出現「彩虹」 就是在升級後的農田上種植作物後會像上圖那樣出現彩虹的東西<br>
+		里長也說 有彩虹的作物才有機會種出特級 <span style='font-size:.5rem;color:red'>(也可以向其他玩家要/購買「5%作物上升一個等級的變異種子」 這樣就不用行家不用彩虹也可以出特級)</span><br>
+		
+		
+		上章節有提到 升級後的農田有10%彩虹出現機率 然後行家有25%機率收割時出現特級的加成
+	</div>
 	</section>
 </article>
