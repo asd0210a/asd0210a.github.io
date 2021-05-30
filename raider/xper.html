@@ -113,7 +113,7 @@ Index
 如果您還沒開始遊玩，那我建議您先看過這篇文章這個階段<br>
 可能會省下不少時間<br>
 	<section id='ch11'>
-		<h3>1-1 播種、種植</h3>
+		<h3>播種、種植</h3>
 		一開始，里長會叫你播種植物 <br>
 		你會注意到，種植的動作開始到完成 需要4秒<br>
 		這4秒 你的「人物」不能走動，收割也是如此<br>
@@ -136,7 +136,7 @@ Index
 	</section>
 	
 	<section id='ch12'>
-		<h3>1-2 生長</h3>
+		<h3>生長</h3>
 			<div>
 			<h4  id='ch121'>1-2-1 栽培時間</h4>
 			到了可以種紅蘿蔔(Lv.3)的階段<br>
@@ -292,7 +292,7 @@ Index
 	</section>
 
 	<section id='ch13'>
-	<h3>1-3 養分</h3>
+	<h3>養分</h3>
 	<div>
 		在Lv.10時 里長會叫你去研究「翻土」<br>
 		施基肥後的農田 翻土後 農田裡的養分就會變多 就是原本農田裡的養分 再x2.5 就是翻土後農田的養分<br>
@@ -345,7 +345,7 @@ Index
 		</div>
 	</section>
 	<section id='ch14'>
-	<h3>1-4 熟練度與特級</h3>
+	<h3>熟練度與特級</h3>
 	<img src='img/misson-sp.jpg'><br>
 	相信這個任務一定帶給不少玩家滿滿的回憶吧!<br>
 	同時也是中期之前最難的任務 為什麼說最難? <br>
@@ -419,16 +419,31 @@ Index
 		</p>
 	</div>
 	</section>
+</article><hr>
+<article>
+<h2>2. 建設發展期</h2>
+	<section>
+	<h3 id='ch21'>苗</h3>
+	<section>
 </article>
 
-
+<hr>
 <article id='tips'>
 </article>
 </body>
 <script>
 function id(a){return document.getElementById(a)}
+//Tips
 var tips=document.getElementsByClassName('tip');
 for(t=0;t<tips.length;t++){
 id('tips').innerHTML+=tips[t].innerHTML;
+}
+//h3s
+var art=document.querySelectorAll('article');
+for(a=1;a<art.length;a++){
+	var h3=art[a].getElementsByTagName('h3');
+	for(b=0;b<h3.length;b++){
+		h3[b].innerText= a +'-'+(b+1)+' '+h3[b].innerText;
+	}
 }
 </script>
