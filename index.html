@@ -25,12 +25,20 @@ div{
 
 所需養分(含綠肥):<input  id='resultFer' readonly>
 </div>
+Test zone
+<div id='test'>
+<input id='tech'>
+<input readonly>
+<input readonly>
+<input readonly>
+</div>
 <h3>
 有任何問題或建議請與我聯絡<br>
 ID :種到歪瓜
 </h3>
 </body>
 <script>
+
 
 var a=document.getElementsByTagName('input'),calc=function(){ a[2].value=a[0].value*(1 / (a[1].value/100) -1 ) };
 var calc2=function(){ 
@@ -47,45 +55,20 @@ a[7].addEventListener('click',calc2);
 for(k=3;k<9;k++){
 a[k].addEventListener('keyup',calc2);
 }
-
+a[10].addEventListener('keyup',()=>{
+//var v=0.0798*a[10].value + 61.337;
+var v=0.0964*a[10].value+ 129.32
+a[11].value=v/50;
+a[12].value=v;
+a[13].value=344.8276*v/50;
+});
 /*
-補針數=F(500+E-C)/10000
-種:	
-	總生值:FC
-	一天生長值: C
-	
-	極限生值(S) :F(500+E)
-	無針條件: FC>=F(500+E) , C>=500+E
-	
-苗:
-	總生值:CG
-	極限生值:G(500+E)
-	CG=G(500+E)
-	一天生長值:
-	無針條件:C>=500+E
-無針種總-種時人總+幼時人總
-CG=G(500+E)
-種時人總:CF
-幼時人總:CG
-11170
-67020-60000 + 10000
-1000
-67020-1117*50
-S+CG - FC=
-690->   32520 t 25620
-1117-> 11170  t 0
-1000-> 17020 差7020
-10000+ 7020
-1177X+BY=11170
-X>Y
-X+Y=10
-y=10-X
-B<1000
-1177X+B(10-X)
-1177X+10B-BX
-
-11170-5885=5285
-5285/5=
+57: y = 0.0798x + 61.337 ,344.8276,70
+y=0.0798(x+768.634) ,
+32: y = 0.0964x + 129.32, 344.8276   -> (a+1343)*0.64=b
+y=0.0964(x+1341.5)
+每日生長值公式(目前是大約值):
+白花: y=0.6648(x+1341.5)
+球芽甘藍: y=0.393(x+768.634)
 */
-
 </script>
