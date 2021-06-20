@@ -11,7 +11,7 @@ section div,article section{
 margin-top:.25rem;
 margin-bottom:.65rem;
 }
-table{border-collapse: collapse;}
+main table{border-collapse: collapse;}
 h3{color:#3B8B15;}
 
 .text-c{text-align:center;}
@@ -95,9 +95,45 @@ margin:.45rem 0;
     margin-inline-start: unset;
 	}
 }
+//contact
+.show{
+display:block;
+}
+.hide{
+display:none;
+}
+.optOn{
+background-color:rgba(180,180,180,.65);
+opacity: .4
+}
+.optOff{
+background-color:unset;
+opacity:unset
+}
 </style>
 </head>
 <body>
+<header style='position:fixed;width:98%;left:0;z-index:10'>
+<button id='btn' style='padding:.35rem .65rem;font-size:1.25rem;margin-left:10px'>三</button>
+<nav id='nav' class='hide' style='background-color:#fff;'>
+<div>與我聯絡</div>
+<table style='border:1px solid;width:100%'>
+<form id=form target='ifr' action='contact_send.php' method="post">
+<label><tr><td>遊戲暱稱:</td><td><input type='text' name='ign'></td></tr></label>
+<label><tr><td>如果有E-mail的話:</td><td><input type='email' name='email'></td></tr></label>
+
+<tr><td>內容:</td></tr><tr><td colspan=2>
+<textarea name='content' style='width:100%;padding:unset;height:40vh' placeholder="跟我說說你的問題或建議吧!要斗內也可以唷哈哈!!! 我會再遊戲中或Email給您" required></textarea></td></tr>
+<label><tr><td id='sdchk'></td><td><input type='num' id='answ' placeholder='輸入答案'></td></tr></label>
+</form>
+<tr><td colspan=2><button id='send' align=center style='margin:0 auto;padding:.25rem .75rem;background-color:#8DC43A;border-radius:.5rem;border:1px solid #000;display:block'>送出</button></td></tr>
+</table>
+</nav>
+</header>
+<iframe name='ifr' hidden></iframe>
+
+<main id=main>
+
 <h2 align=center>從0－瘋種菜務農技巧暨詳細攻略 - By:種到歪瓜 <a style='font-size:1rem' href='https://forum.gamer.com.tw/Co.php?bsn=37413&sn=3588' target='_blank'>巴哈貼文(待同步)</a></h2><hr>
 <div>
 	各位農友好 我在遊戲裡ID是 種到歪瓜<br>
@@ -456,11 +492,11 @@ Index
 到了Lv.13就可以研究「幼苗種植」和「育苗場」、Lv.15的「床土製造」，不但讓我們收穫量變多，而且種植時間和所需養分也減少了。<br>
 前期還有一個很難的任務 - 蘆筍任務，這逼很多新玩家選擇"棄"坑。到底蘆筍怎麼種才好呢?
 	<section>
-	<h3>市場和互助</h3>
+	<h3 id='ch21'>市場和互助</h3>
 	過完特級青花菜任務(阿石任務)後，婦女會長就會來跟你說可以上公車了<span class='note'>(?)</span>
 	</section>
 	<section>
-	<h3>土撥鼠的祝福- Real 真菜兌換</h3>
+	<h3 id='ch22'>土撥鼠的祝福- Real 真菜兌換</h3>
 	<div>
 		 12等後，虎視眈眈的市場經理就會來找你，說她在你的農田施了魔法，去收成一個作物看看。
 		<img src='img/real-gacha.jpg'>
@@ -523,6 +559,7 @@ Index
 <hr>
 <article id='tips'>
 </article>
+</main>
 </body>
 <script>
 function id(a){return document.getElementById(a)}
@@ -539,4 +576,23 @@ for(a=1;a<art.length;a++){
 		h3[b].innerText= a +'-'+(b+1)+' '+h3[b].innerText;
 	}
 }
+
+
+var btn=id('btn'),nav=id('nav'),main=id('main'),numA;
+btn.addEventListener('click',function(){
+	if(nav.classList[0]=='hide'){
+		nav.setAttribute('class','show');
+		main.setAttribute('class','optOn');
+		numA=Math.ceil(Math.random()*10);
+		id('sdchk').innerText='驗證問答: '+numA+'x2=?';
+		id('send').addEventListener('click',function(){
+			if(id('answ').value==numA*2){
+				id('form').submit();
+				alert('感謝您的回報，我會盡快回復您唷');
+				btn.click();
+			}else{alert('驗證問答錯誤，在踹踹看!!')}
+		})
+	}else{nav.setAttribute('class','hide');main.setAttribute('class','optOff');}
+});
+
 </script>
