@@ -454,27 +454,6 @@ for(a=1;a<art.length;a++){
 		h3[b].innerText= a +'-'+(b+1)+' '+h3[b].innerText;
 	}
 }
-
-//form method
-var btn=id('btn'),nav=id('nav'),main=id('main'),numA;
-btn.addEventListener('click',function(){
-	if(nav.classList[0]=='hide'){
-		nav.setAttribute('class','show');
-		main.setAttribute('class','optOn');
-		numA=Math.ceil(Math.random()*10);
-		id('sdchk').innerText='驗證問答: '+numA+'x2=?';
-		id('send').addEventListener('click',function(){
-			id('answ').value==numA*2 ? id('sub').click()  : alert('驗證問答錯誤，在踹踹看!!')
-		})
-	}else{nav.setAttribute('class','hide');main.setAttribute('class','optOff');}
-});
-id('form').addEventListener('submit',function(){
-alert("感謝您的回報，我會盡快回復您唷");location.reload()})
-
-//uptime
-fetch('https://api.github.com/repos/asd0210a/asd0210a.github.io')
-.then( (a)=>a.json()).then((s)=>{id('uptime').innerText='最後更新:'+s['updated_at'].slice(0,10)});
-
 //og:graph changer
 
 </script>
