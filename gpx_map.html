@@ -1,0 +1,128 @@
+<!doctype html>
+<html><head>
+<!--Leaflet地圖API headStart-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+<style>
+#map{
+	height: 90vh;
+	width:90vw;
+}
+</style>
+
+<!--Leaflet地圖API headEnd-->
+<meta charset='utf-8'>
+</head>
+<body>
+<input type="file" id="f" onchange="gpx()">
+ <div id='map'></div>
+
+<div id='d' hidden></div>
+</body>
+<script>
+//自訂函數，讓之後程式碼更簡化
+		//元素選取
+const 	qs=(a)=>document.querySelectorAll(a),
+
+		//RGB三色轉16位進制
+		rth = (arr) => '#' + arr.map(x => x.toString(16).padStart(2, '0')).join('')
+//
+		
+//初始化變數，以免出錯		
+var 	obj, //以陣列方式儲存gpx點位資訊
+		colorPa, //顏色分段係數
+//		
+//gpx如有紀錄多天，每天一種顏色漸層
+rgb = [
+	[110,0,0],
+	[0,110,0],
+	[0,0,110],
+	[0,110,110]
+]
+
+//自訂功能函數名稱
+gpx=()=>{
+	obj=[] //點位資訊歸0(WIP)
+	
+	var 	[inputFile]=qs('#f')[0].files, //從瀏覽器記憶體取得上傳檔案資訊
+			reader = new FileReader() //檔案讀取
+	
+	
+	reader.addEventListener('load',()=>{ //檔案讀取後，接下來做...
+		
+		qs('#d')[0].innerHTML= reader.result //把gpx xml格式轉為HTML以便使用元素選取器抓取資訊
+		
+		var trkseg=qs('trkseg') //gpx紀錄的天數，全部天數的紀錄設為一個變數 ***此為錯誤部分，trkseg應為紀錄暫停的分段***
+		
+		for(i=0;i<trkseg.length;i++){ //第i(0,1,2,3)天的...
+			let trkpt=qs('trkseg')[i].querySelectorAll('trkpt') //該天全部紀錄點位
+			
+			obj[i]=[], //儲存第i天的資訊
+			
+			colorPa = Math.ceil(trkpt.length/145)//顏色分段係數，從110~255取分段讓顏色顯示平均分配
+			
+			for(j=0;j<trkpt.length;j++){ //第j個點位的...
+				let pt=trkpt[j]; //第j個點位，簡化選取
+				
+				obj[i][j]={ //儲存第j個點位的資訊
+					lat: pt.getAttribute('lat'), //緯度
+					lon: pt.getAttribute('lon'), //經度
+					ele: parseFloat(pt.childNodes[0].innerText).toFixed(2), //高程，到小數第2位
+					time: new Date(pt.childNodes[1].innerText).toLocaleString(), //時間，轉為易讀的格式
+					color: rgb[i].map(x =>{ //該點的顏色
+						return x+= x!=110? j%colorPa != 0 ? j%colorPa : 0 : Math.ceil(j/colorPa)
+						/*
+						x加上口:
+							如果x不=110:
+							↑	就再如果j/顏色分段係數的餘數不=0，則 口=j/顏色分段係數的餘數，不然口=0
+							|
+							|
+							不成立:
+								那 口 = j/顏色分段係數，無條件進位
+						*/
+					})
+				}
+			}
+		}	
+	})
+
+	inputFile ? reader.readAsText(inputFile) :0 //如果有檔案，就以文字閱讀方式讀取裡面的內容
+	genPath() //執行genPath功能函數
+}
+</script>
+<script>
+
+const genPath=()=>{
+	setTimeout(()=>{ //暫緩執行(要等obj儲存全部點位)
+		var map = L.map('map').setView([obj[0][0].lat, obj[0][0].lon], 20), //把地圖訂位到gpx第一個點位位置，縮放20倍
+			overlayMaps={} //儲存點位顯示的物件格式
+			
+		const lay= L
+		.tileLayer('https://tile.happyman.idv.tw/map/moi_osm/{z}/{x}/{y}.png', //開啟魯地圖，把地圖訂位到gpx第一個點位位置
+		{attribution: '&copy; <a href="https://map.happyman.idv.tw/rudy/taiwan_topo.html">Taiwan TOPO</a>'})//魯地圖著作權及該API作者
+		.addTo(map) //輸出地圖並顯示
+		
+		obj.forEach((seg,day)=>{ //第day天的資料seg
+			this['l'+day]=L.layerGroup().addTo(map) //該天點位資訊之集合
+			
+			seg.forEach((e,i)=>{ //第i個點位的資訊e(element)
+				let p=[e.lat, e.lon];//該點的緯經度
+				c =new L.circle(p,{
+					color:rth(e.color),radius: 3
+				})//在地圖上建立該點，大小=3，上色
+				.bindPopup(`Time:${e.time}<br>高度:${e.ele}<br>點位:${day}${i}`).addTo(this['l'+day]) //點擊該點會出現的資訊，順便加到該天點位資訊集合
+			})
+			
+			overlayMaps['第'+(day+1)+'天']=this['l'+day] //在旁邊overlay新增該天點位資訊集合，以便操作
+		})
+		const lay2={map:lay} //overlay加上地圖選項(目前只有1個)
+		layerControl = L.control.layers(lay2,overlayMaps).addTo(map) //秀出overlay，輸出至地圖
+		
+	},1000)//以上到setTimeout的東西，延遲1秒後執行
+}
+ 
+</script>
