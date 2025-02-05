@@ -1,0 +1,83 @@
+<!doctype html>
+<html><head>
+	<meta charset='utf-8'>
+	<!--Leaflet地圖API headStart-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		 integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+		 crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+		 integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+		 crossorigin=""></script>
+	<!--Leaflet地圖API headEnd-->
+
+	<style>
+	#map{
+		height: 90vh;
+		width:90vw;
+	}
+	</style>
+
+</head>
+<body>
+	<div id='map'></div>
+	<div id='d' hidden></div>
+</body>
+<script>
+const genPath=()=>{
+	setTimeout(()=>{ //暫緩執行(要等讀取geodata)
+		cornors=geodata['bbox']
+		x=(cornors[1]+cornors[3])/2
+		y=(cornors[0]+cornors[2])/2
+		var map = L.map('map').setView([x, y], 15), //把地圖區塊視窗定位到中心點位置，縮放20倍
+			overlayMaps={} //儲存點位顯示的物件格式
+		
+		const lay= L.tileLayer('https://tile.happyman.idv.tw/map/moi_osm/{z}/{x}/{y}.png', { 	//開啟魯地圖，載入特性
+		attribution: '&copy; <a href="https://map.happyman.idv.tw/rudy/taiwan_topo.html">Taiwan TOPO</a>'})//魯地圖著作權及該API作者
+		.addTo(map) //輸出地圖並顯示
+		
+		geodata['features'].forEach((e,i)=>{
+			LatLng	=	e.geometry.coordinates.map(a=> a.reverse()) //經緯度
+			prop	=	e.properties //屬性
+			
+			c=new L.polyline(LatLng, {color: 'red'}).addTo(map)
+				.bindPopup(`
+				<table border=1>
+				<tr><td>所屬工作站</td><td>${prop['Stn_cns']}</td></tr>
+				<tr><td>工程名稱</td><td>${prop['CaseName']}</td></tr>
+				<tr><td>工程編號</td><td>${prop['CaseNo']}</td></tr>
+				<tr><td>契約編號</td><td>${prop['DeedNo']}</td></tr>
+				<tr><td>合約金額(變更金額)</td><td>${prop['DeedMoney']}</td></tr>
+				<tr><td>承包廠商</td><td>${prop['DeedCorp']}</td></tr>
+				<tr><td>起點高程</td><td>${prop['Z_Start']}</td></tr>
+				<tr><td>終點高程</td><td>${prop['Z_End']}</td></tr>
+				<tr><td>設計流量</td><td>${prop['Q_Design']}</td></tr>
+				<tr><td>設計坡度</td><td>${prop['S_Design']}</td></tr>
+				<tr><td>工程地點</td><td>${prop['Place']}</td></tr>
+				<tr><td>斷面型式</td><td>${prop['Shape']}</td></tr>
+				<tr><td>路修方式</td><td>${prop['RoadFixWay']}</td></tr>
+				<tr><td>設計人員</td><td>${prop['Designer']}</td></tr>
+				<tr><td>監造人員</td><td>${prop['Watcher']}</td></tr>
+				<tr><td>開工日期</td><td>${prop['Date_Start']}</td></tr>
+				<tr><td>竣工日期</td><td>${prop['Date_Finish']}</td></tr>
+				<tr><td>驗收日期</td><td>${prop['Date_Check']}</td></tr>
+				<tr><td>改善長度</td><td>${prop['長度']}</td></tr>
+				</table>
+				`)
+		})
+
+		const lay2={
+			"113年":lay
+		} //overlay加上地圖選項(目前只有1個)
+		layerControl = L.control.layers(lay2,overlayMaps).addTo(map) //秀出overlay，輸出至地圖
+		
+	},1000)//以上到setTimeout的東西，延遲1秒後執行
+}
+
+var geodata
+fetch("a.json",{mode:'cors'})
+.then((r)=>r.json() ) //處理回應
+.then((d)=>{
+	geodata=d
+	genPath()
+})
+</script>
